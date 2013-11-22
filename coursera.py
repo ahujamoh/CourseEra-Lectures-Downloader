@@ -1,3 +1,10 @@
+'''
+	The link that I was trying to download was this
+	https://class.coursera.org/compilers-003/lecture/download.mp4?lecture_id=1
+	
+	If you want to use this script to download video lectures then just change the url in the code accordingly
+'''
+
 import os
 import glob
 from urllib import unquote
@@ -11,11 +18,19 @@ def unquote_u(source):
 
 os.system("mkdir CourseEra")
 
-for ctr in range(50, 98):
+# the initial and final values of documents to be downloaded
+initial_value = raw_input("Enter the initial number: ")
+final_value = raw_input("Enter the final number: ")
+
+init = int(initial_value)
+final = int(final_value)
+
+
+for ctr in range(init, final + 1):
 
 	# Download the file
-	string = "wget --content-disposition https://class.coursera.org/compilers-003/lecture/download.mp4?lecture_id=" + str(ctr)
-	os.system(string)
+	url = "wget --content-disposition --quiet https://class.coursera.org/compilers-003/lecture/download.mp4?lecture_id=" + str(ctr)
+	os.system(url)
 
 	# Rename the file
 	result = []
@@ -37,3 +52,7 @@ for ctr in range(50, 98):
 		# Remove all .mp4 files from parent directory
 		del_cmd = "rm *.mp4"
 		os.system(del_cmd)
+		
+		os.popen('notify-send "CourseEra Notification" "File Downloaded :)" ')
+		
+os.popen('notify-send "CourseEra Notification" "All files successfully downloaded :)"' )
