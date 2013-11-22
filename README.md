@@ -1,4 +1,7 @@
 CourseEra-Lectures-Downloader
 =============================
 
-A utility to download all the video tutorials and srts into your system
+A simple utility for Linux Based Operating Systems to download video lectures and subtitles from coursera.org 
+You need to have Python 2.7 or greater installed to run these scripts 
+
+
