@@ -8,12 +8,37 @@
 import os
 import glob
 from urllib import unquote
+import urllib2
 
 def unquote_u(source):
     res = unquote(source)
     if '%u' in result:
         res = result.replace('%u','\\u').decode('unicode_escape')
     return res
+
+def download(url):
+    file_name = url.split('/')[-1]
+    u = urllib2.urlopen(url)
+    f = open(file_name, 'wb')
+    meta = u.info()
+    file_size = int(meta.getheaders("Content-Length")[0])
+    print "Downloading: %s Bytes: %s" % (file_name, file_size)
+    file_size_dl = 0
+    block_sz = 8192
+
+    while True:
+        buffer = u.read(block_sz)
+        if not buffer:
+            break
+
+        file_size_dl += len(buffer)
+        f.write(buffer)
+        status = r"%10d  [%3.2f%%]" % (file_size_dl, file_size_dl * 100. / file_size)
+        status = status + chr(8)*(len(status)+1)
+        print status,
+    f.close()
+
+
 
 
 os.system("mkdir CourseEra")
@@ -29,14 +54,16 @@ final = int(final_value)
 for ctr in range(init, final + 1):
 
 	# Download the file
-	url = "wget --content-disposition --quiet https://class.coursera.org/compilers-003/lecture/download.mp4?lecture_id=" + str(ctr)
-	os.system(url)
+	#url = "wget --content-disposition --quiet https://class.coursera.org/compilers-003/lecture/download.mp4?lecture_id=" + str(ctr)
+	#os.system(url)
+    url = "https://class.coursera.org/compilers-003/lecture/download.mp4?lecture_id=" + str(ctr)
+    download(url)
 
 	# Rename the file
-	result = []
-	result = glob.glob('*.mp4')
+    result = []
+    result = glob.glob('*.mp4')
 
-	for i in range(0, len(result)):
+    for i in range(0, len(result)):
 		x = result[i]
 		encoded_name = x[:len(x)/2]
 		actual_name = unquote_u(encoded_name)
