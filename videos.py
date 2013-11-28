@@ -23,7 +23,6 @@ def download(_url):
   file_name = ("%s_%s.mp4") %("Lecture", lec_no) 
   u = urllib2.urlopen(_url)
   f = open(file_name, 'wb')
-  import pdb; pdb.set_trace()
   meta = u.info()
   file_size = int(meta.getheaders("Content-Length")[0])
   print "Downloading: %s Bytes: %s" % (file_name, file_size)
