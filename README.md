@@ -1,7 +1,3 @@
-CourseEra-Lectures-Downloader
-=============================
-
-
 Requirements
 ================
 
