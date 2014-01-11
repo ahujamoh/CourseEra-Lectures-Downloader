@@ -32,8 +32,7 @@ else:
 		rows = cur.fetchall()
 
 		for row in rows:
-			print 'Downloading, '
 			download(row[0])
 			cur.execute("DELETE FROM links WHERE url=?", (row[0],))
 			con.commit()
-			print 'Deleted: ', row[0]
+			print 'Downloaded: ', row[0]
