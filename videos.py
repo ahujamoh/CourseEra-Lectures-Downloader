@@ -11,8 +11,8 @@ con = None
 
 if not(os.path.exists('database.db')):
 	con = lite.connect('database.db')	
-	urls = scrape('https://class.coursera.org/compilers-003/lecture')
-
+	urls = scrape('https://class.coursera.org/crypto-007/lecture')
+	
 	with con:
 		cur = con.cursor()
 		cur.execute("CREATE TABLE links(url TEXT)")

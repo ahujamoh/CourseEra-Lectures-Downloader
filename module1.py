@@ -4,9 +4,13 @@ def scrape(page_url):
 	f = urllib2.urlopen(page_url)
 	s = f.read()
 
-	base_url = 'https://class.coursera.org/compilers-003/lecture/download.mp4?lecture_id='
+	base_url = 'https://class.coursera.org/crypto-007/lecture/download.mp4?lecture_id='
+	# crypto-007/lecture/download.mp4?lecture_id=1
+	# compilers-003/lecture/download.mp4?lecture_id=1
 
 	links = []
+	# links.append('https://class.coursera.org/crypto-007/lecture/download.mp4?lecture_id=3')
+	# links.append('https://class.coursera.org/crypto-007/lecture/download.mp4?lecture_id=37')
 
 	while True:
 		start_pos = s.find(base_url)
